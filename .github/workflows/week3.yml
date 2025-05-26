@@ -1,0 +1,25 @@
+name: Week 3 Validation
+on: [push, pull_request]
+
+jobs:
+  validate_setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Verify Frontend Structure
+        run: |
+          if [ ! -d "frontend/src" ]; then
+            echo "❌ Missing frontend/src directory"
+            exit 1
+          fi
+          echo "✅ Frontend structure exists"
+          
+      - name: Verify Backend Structure
+        run: |
+          if [ ! -d "backend" ]; then
+            echo "❌ Missing backend directory"
+            exit 1
+          fi
+          echo "✅ Backend structure exists"
