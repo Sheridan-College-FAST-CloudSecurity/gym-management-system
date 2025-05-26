@@ -6,9 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify Structure
+      - name: Verify Week 3 Structure
         run: |
-          [ -d backend ] || { echo "❌ Missing backend/"; exit 1; }
-          [ -d frontend ] || { echo "❌ Missing frontend/"; exit 1; }
-          [ -f .github/CODEOWNERS ] || { echo "❌ Missing CODEOWNERS"; exit 1; }
-          echo "✅ All Week 3 checks passed"
+          [ -d backend ] && [ -d frontend ] && [ -f .github/CODEOWNERS ] || exit 1
+          echo "✅ Week 3 structure validated"
