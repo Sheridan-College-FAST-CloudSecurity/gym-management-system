@@ -8,8 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify Structure
         run: |
-          echo "✅ Validating Week 3 structure..."
-          [ -d backend ] || exit 1
-          [ -d frontend ] || exit 1
-          [ -f .github/CODEOWNERS ] || exit 1
-          echo "✅ All Week 3 requirements satisfied"
+          [ -d backend ] || { echo "❌ Missing backend/"; exit 1; }
+          [ -d frontend ] || { echo "❌ Missing frontend/"; exit 1; }
+          [ -f .github/CODEOWNERS ] || { echo "❌ Missing CODEOWNERS"; exit 1; }
+          echo "✅ All Week 3 checks passed"
