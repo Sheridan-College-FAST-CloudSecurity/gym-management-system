@@ -1,0 +1,12 @@
+name: Week 3 Validation
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Week 3 Structure
+        run: |
+          [ -d backend ] && [ -d frontend ] && [ -f .github/CODEOWNERS ] || exit 1
+          echo "✅ Week 3 structure validated"
