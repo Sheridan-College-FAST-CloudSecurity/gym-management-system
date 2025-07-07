@@ -1,0 +1,8 @@
+# gym_manager/payments.py
+def calculate_fee(member_type, months):
+    rates = {
+        'Basic': 30,
+        'Premium': 50,
+        'VIP': 80
+    }
+    return rates[member_type] * months
