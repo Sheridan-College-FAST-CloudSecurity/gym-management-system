@@ -18,3 +18,6 @@ A web application designed to help gym owners manage memberships, track user reg
 ```bash
 git clone https://github.com/yourusername/gym-management-system.git
 cd gym-management-system
+
+
+python web_app.py
