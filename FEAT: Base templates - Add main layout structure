@@ -1,0 +1,12 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Gym Management{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav>...</nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
