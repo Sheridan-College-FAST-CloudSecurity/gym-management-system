@@ -1,0 +1,8 @@
+# web_app.py
+@app.route('/members/add', methods=['POST'])
+def add_member():
+    data = request.form
+    new_member = Member(name=data['name'], email=data['email'])
+    db.session.add(new_member)
+    db.session.commit()
+    return redirect(url_for('list_members'))
