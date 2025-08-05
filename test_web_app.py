@@ -40,6 +40,6 @@ def test_api_get_member(client):
 def test_calculate_membership_fee():
     """Test membership fee calculation"""
     # Update these assertions to match your actual rates
-    assert calculate_membership_fee("Monthly", 1) == 30
-    assert calculate_membership_fee("Quarterly", 1) == 80
-    assert calculate_membership_fee("Annual", 1) == 300
+    assert calculate_membership_fee("Monthly") == 30
+    assert calculate_membership_fee("Quarterly") == 80
+    assert calculate_membership_fee("Annual") == 300

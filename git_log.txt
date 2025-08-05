@@ -1,0 +1,11 @@
+* de4aa9e - Akash7235, 2025-07-07 : feat: Add member registration form
+| * 148ed35 - Akash7235, 2025-05-26 : docs: Add Week 3 completion checklist
+| * 2573510 - Akash7235, 2025-05-26 : STRICT Week 3 compliance: Minimal structure
+| * 5616f01 - Akash7235, 2025-05-26 : Fix Week 3 validation workflow
+| * c949203 - Akash7235, 2025-05-26 : Add empty backend/frontend folders
+| * 4e36cc5 - Akash7235, 2025-05-26 : Add proper Week 3 validation workflow
+| * 22a6ed9 - Akash7235, 2025-05-26 : Add Week 3 validation workflow
+|/  
+* 0f6efd4 - Akash7235, 2025-05-26 : Initial gym management system setup
+* 2b2b4d5 - Akash7235, 2025-05-19 : Added CODEOWNERS file
+* 5094e80 - Akash7235, 2025-05-19 : Initial commit

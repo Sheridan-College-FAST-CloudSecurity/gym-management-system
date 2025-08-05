@@ -36,8 +36,8 @@ def get_all_payments():
         ).order_by(Payment.payment_date.desc()).all()
         
         # Force loading of relationships before session closes
-        for payment in payments:
-            _ = payment.member.first_name
+        #for payment in payments:
+         #   _ = payment.member.first_name
             
         return payments
     finally:

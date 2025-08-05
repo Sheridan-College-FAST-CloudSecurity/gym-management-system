@@ -1,0 +1,22 @@
+# .gitignore file
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+
+# Database file
+gym.db
+
+# IDE settings
+.vscode/
+
+aws/
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+awscliv2.zip
+terraform.zip
+tfplan
+terraform.tfvars

@@ -30,7 +30,13 @@
                 {% for payment in payments %}
                     <tr>
                         <td>{{ payment.id }}</td>
-                        <td>{{ payment.member.first_name }} {{ payment.member.last_name }}</td>
+                        <td>
+    {% if payment.member %}
+        {{ payment.member.first_name }} {{ payment.member.last_name }}
+    {% else %}
+        <span style="color:red;">Member Deleted</span>
+    {% endif %}
+</td>
                         <td>${{ "%.2f"|format(payment.amount) }}</td>
                         <td>{{ payment.payment_date.strftime('%Y-%m-%d') }}</td>
                         <td>{{ payment.payment_method }}</td>
