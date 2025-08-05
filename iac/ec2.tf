@@ -11,6 +11,19 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
+# This reads our user_data.sh script and injects variables into it
+data "template_file" "user_data_script" {
+  template = file("${path.module}/user_data.sh")
+
+  vars = {
+    db_username      = var.db_username
+    db_password      = var.db_password
+    db_address       = aws_db_instance.gym_database.address
+    db_name          = aws_db_instance.gym_database.db_name
+    flask_secret_key = var.flask_secret_key
+  }
+}
+
 # The EC2 instance for our web application
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.amazon_linux_2.id
@@ -18,42 +31,28 @@ resource "aws_instance" "web_server" {
 
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.web_sg.id]
+  iam_instance_profile   = aws_iam_instance_profile.web_server_profile.name # FIX: Attaches IAM role
+
+  # FIX: Enable detailed monitoring
+  monitoring = true
+
+  # FIX: Enforce Instance Metadata Service v2 (more secure)
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
 
   # Requirement: Encryption at Rest for the server's storage
   root_block_device {
     encrypted = true
   }
 
-  # This script runs when the instance first starts up
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y git python3-pip openssl 
+  # This passes the rendered script to the instance
+  user_data = data.template_file.user_data_script.rendered
+  
+  # This ensures that if the user_data script changes, the instance is replaced
+  user_data_replace_on_change = true
 
-              # Clone the application repository
-              git clone https://github.com/Sheridan-College-FAST-CloudSecurity/gym-management-system.git /home/ec2-user/app
-
-              # Install dependencies
-              cd /home/ec2-user/app
-              pip3 install -r requirements.txt
-              pip3 install gunicorn
-
-              # Generate a self-signed SSL certificate for HTTPS
-              openssl req -x509 -newkey rsa:4096 -nodes \
-                -keyout /home/ec2-user/app/key.pem \
-                -out /home/ec2-user/app/cert.pem -days 365 \
-                -subj "/C=US/ST=State/L=City/O=Org/CN=localhost"
-
-              # Create the .env file with secrets
-              echo "FLASK_SECRET_KEY='${var.flask_secret_key}'" > /home/ec2-user/app/.env
-              echo "DATABASE_URL='postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.gym_database.address}/${aws_db_instance.gym_database.db_name}'" >> /home/ec2-user/app/.env
-              
-              # Set permissions
-              chown -R ec2-user:ec2-user /home/ec2-user/app
-
-              # Run the application with Gunicorn over HTTPS on port 443
-              gunicorn --bind 0.0.0.0:443 web_app:app --daemon --keyfile /home/ec2-user/app/key.pem --certfile /home/ec2-user/app/cert.pem
-              EOF
   tags = {
     Name = "gym-web-server"
   }

@@ -2,6 +2,7 @@
 
 resource "aws_sns_topic" "alarm_topic" {
   name = "gym-app-alarms"
+  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_sns_topic_subscription" "email_subscription" {
