@@ -20,4 +20,4 @@ git clone https://github.com/yourusername/gym-management-system.git
 cd gym-management-system
 
 
-python web_app.py
+python web_app.pyTriggering a fresh deployment run
