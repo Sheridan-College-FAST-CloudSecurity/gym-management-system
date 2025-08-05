@@ -29,6 +29,8 @@ jobs:
 
       - name: Terraform Plan
         id: plan
+        env:
+          TF_LOG: DEBUG        
         run: |
           terraform plan \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
