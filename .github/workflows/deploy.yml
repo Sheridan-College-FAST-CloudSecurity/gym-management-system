@@ -34,7 +34,8 @@ jobs:
         run: |
           terraform plan \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
-            -var="flask_secret_key=${{ secrets.FLASK_SECRET_KEY }}"
+            -var="flask_secret_key=${{ secrets.FLASK_SECRET_KEY }}" \
+            -var="key_name=gym-app-key"  
         working-directory: ./iac
 
       - name: Manual Approval for Deployment
@@ -50,4 +51,5 @@ jobs:
           terraform apply -auto-approve \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
             -var="flask_secret_key=${{ secrets.FLASK_SECRET_KEY }}"
+            -var="key_name=gym-app-key"
         working-directory: ./iac
