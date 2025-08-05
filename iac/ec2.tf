@@ -28,7 +28,7 @@ data "template_file" "user_data_script" {
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.amazon_linux_2.id
   instance_type = "t2.micro" # Free Tier eligible
-
+  key_name      = var.key_name
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   iam_instance_profile   = aws_iam_instance_profile.web_server_profile.name # FIX: Attaches IAM role

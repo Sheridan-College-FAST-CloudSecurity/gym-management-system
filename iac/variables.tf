@@ -24,3 +24,7 @@ variable "flask_secret_key" {
   sensitive   = true
 }
 
+variable "key_name" {
+  description = "The name of the EC2 Key Pair for SSH access."
+  type        = string
+}
