@@ -7,7 +7,7 @@ variable "region" {
 
 variable "db_username" {
   description = "The username for the RDS database."
-  default     = "admin"
+  default     = "gymadmin"
 }
 
 variable "db_password" {
