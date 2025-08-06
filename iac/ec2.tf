@@ -42,7 +42,7 @@ resource "aws_instance" "web_server" {
     http_tokens   = "required"
   }
 
-  # Requirement: Encryption at Rest for the server's storage
+  # Requirement: Encryption at Rest for the server's storage.
   root_block_device {
     encrypted = true
   }
