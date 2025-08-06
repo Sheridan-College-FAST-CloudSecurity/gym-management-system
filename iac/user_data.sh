@@ -18,8 +18,7 @@ openssl req -x509 -newkey rsa:4096 -nodes \
 
 # Create the .env file with secrets
 echo "FLASK_SECRET_KEY='${flask_secret_key}'" > /home/ec2-user/app/.env
-echo "DATABASE_URL='postgresql://${db_username}:${db_password}@${db_address}/${db_name}'" >> /home/e
-c2-user/app/.env
+echo "DATABASE_URL='postgresql://${db_username}:${db_password}@${db_address}/${db_name}'" >> /home/ec2-user/app/.env
 
 # Set permissions
 chown -R ec2-user:ec2-user /home/ec2-user/app

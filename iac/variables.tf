@@ -27,4 +27,5 @@ variable "flask_secret_key" {
 variable "key_name" {
   description = "The name of the EC2 Key Pair for SSH access."
   type        = string
+  default     = "gym-app-key"
 }
