@@ -28,12 +28,22 @@ resource "aws_subnet" "public_subnet" {
 }
 
 # Private Subnet for the Database (RDS)
-resource "aws_subnet" "private_subnet" {
+resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.gym_vpc.id
   cidr_block        = "10.0.2.0/24"
+  availability_zone = "${var.region}a"
+  tags = {
+    Name = "gym-private-subnet-1"
+  }
+}
+
+# Private Subnet 2 for the Database (RDS)
+resource "aws_subnet" "private_subnet_2" {
+  vpc_id            = aws_vpc.gym_vpc.id
+  cidr_block        = "10.0.3.0/24" # <-- New CIDR block
   availability_zone = "${var.region}b"
   tags = {
-    Name = "gym-private-subnet"
+    Name = "gym-private-subnet-2"
   }
 }
 

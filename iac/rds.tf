@@ -3,7 +3,7 @@
 # This creates a subnet group, telling RDS which private subnets it can use
 resource "aws_db_subnet_group" "gym_db_subnet_group" {
   name       = "gym-db-subnet-group"
-  subnet_ids = [aws_subnet.private_subnet.id]
+  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 
   tags = {
     Name = "Gym DB Subnet Group"

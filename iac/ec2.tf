@@ -31,11 +31,11 @@ resource "aws_instance" "web_server" {
   key_name      = var.key_name
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.web_sg.id]
-  iam_instance_profile   = aws_iam_instance_profile.web_server_profile.name # FIX: Attaches IAM role
+  # iam_instance_profile   = aws_iam_instance_profile.web_server_profile.name # FIX: Attaches IAM role
 
   # FIX: Enable detailed monitoring.
   monitoring = true
-
+ 
   # FIX: Enforce Instance Metadata Service v2 (more secure).
   metadata_options {
     http_endpoint = "enabled"
