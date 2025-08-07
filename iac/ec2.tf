@@ -1,6 +1,6 @@
 # iac/ec2.tf
 
-# This looks up the latest Amazon Linux 2 AMI ID for us
+# This looks up the latest Amazon Linux 2 AMI ID for us.
 data "aws_ami" "amazon_linux_2" {
   most_recent = true
   owners      = ["amazon"]
@@ -11,7 +11,7 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
-# This reads our user_data.sh script and injects variables into it
+# This reads our user_data.sh script and injects variables into it.
 data "template_file" "user_data_script" {
   template = file("${path.module}/user_data.sh")
 
