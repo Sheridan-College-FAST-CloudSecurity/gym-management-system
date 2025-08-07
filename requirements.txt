@@ -1,14 +1,16 @@
+# requirements.txt - Compatible with Amazon Linux 2
+
 # Core web framework and extensions
-Flask>=3.0
-Flask-Login>=0.6
-Werkzeug>=3.0
-gunicorn>=21.0
+Flask==2.2.5
+Flask-Login==0.6.3
+Werkzeug==2.2.3
+gunicorn==21.2.0
 
 # Database
-SQLAlchemy>=2.0
-psycopg2-binary>=2.9
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
 
 # Utilities
-python-dotenv>=1.0
-python-dateutil>=2.8
-tabulate>=0.9
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+tabulate==0.9.0
