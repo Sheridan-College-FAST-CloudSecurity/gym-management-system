@@ -1,4 +1,4 @@
-# iac/variables.tf
+# iac/variables.tf..
 
 variable "region" {
   description = "The AWS region to deploy resources in."
@@ -25,7 +25,7 @@ variable "flask_secret_key" {
 }
 
 variable "key_name" {
-  description = "The name of the EC2 Key Pair for SSH access."
+  description = "The name of the EC2 Key Pair for SSH access"
   type        = string
   default     = "gym-app-key"
 }
