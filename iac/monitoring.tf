@@ -1,4 +1,4 @@
-# iac/monitoring.tf
+# iac/monitoring.tf.
 
 resource "aws_sns_topic" "alarm_topic" {
   name = "gym-app-alarms"
