@@ -23,7 +23,7 @@ def create_admin_user():
             print("Error: Passwords do not match.")
             return
 
-        password_hash = generate_password_hash(password)
+        password_hash = generate_password_hash(password, method="pbkdf2:sha256", salt_length=16)
 
         new_admin = Admin(username=username, password_hash=password_hash)
         session.add(new_admin)
